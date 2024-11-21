@@ -33,6 +33,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signIn } from "@/auth";
+import { signInToTiktok } from "@/lib/signIn";
 
 export function SocialMediaConnector() {
   const [tiktokConnected, setTiktokConnected] = useState(false);
@@ -55,8 +56,8 @@ export function SocialMediaConnector() {
 
   const connectTiktok = async () => {
     // Implement TikTok connection logic here
-    await signIn("tiktok");
-    setTiktokConnected(true);
+    await signInToTiktok();
+    // setTiktokConnected(true);
   };
 
   const connectInstagram = () => {
