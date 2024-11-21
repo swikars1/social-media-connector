@@ -56,7 +56,7 @@ export function SocialMediaConnector() {
   const connectTiktok = async () => {
     // Implement TikTok connection logic here
     await signInToTiktok();
-    // setTiktokConnected(true);
+    setTiktokConnected(true);
   };
 
   const connectInstagram = () => {
