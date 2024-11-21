@@ -40,13 +40,13 @@ export function SocialMediaConnector() {
   const [caption, setCaption] = useState("");
   const [postToTiktok, setPostToTiktok] = useState(true);
   const [postToInstagram, setPostToInstagram] = useState(true);
-  const [credits, _] = useState(100); // Example initial credits
+  const [credits] = useState(100); // Example initial credits
 
-  const handleFileChange = (event: any) => {
-    setFile(event.target.files[0]);
+  const handleFileChange = (event) => {
+    setFile(event?.target?.files?.[0]);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: Event) => {
     event.preventDefault();
     // Here you would implement the actual upload logic
     console.log("Uploading:", { file, caption, postToTiktok, postToInstagram });
