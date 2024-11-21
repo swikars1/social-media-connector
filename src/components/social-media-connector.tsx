@@ -46,7 +46,7 @@ export function SocialMediaConnector() {
     setFile(event?.target?.files?.[0]);
   };
 
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     // Here you would implement the actual upload logic
     console.log("Uploading:", { file, caption, postToTiktok, postToInstagram });
