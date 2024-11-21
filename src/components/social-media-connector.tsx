@@ -1,13 +1,28 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Switch } from "@/components/ui/switch"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Instagram, TwitterIcon as TikTok, Upload, Home, Settings, HelpCircle, Bell } from 'lucide-react'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Instagram,
+  TwitterIcon as TikTok,
+  Upload,
+  Home,
+  Settings,
+  HelpCircle,
+  Bell,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,37 +30,37 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function SocialMediaConnector() {
-  const [tiktokConnected, setTiktokConnected] = useState(false)
-  const [instagramConnected, setInstagramConnected] = useState(false)
-  const [file, setFile] = useState(null)
-  const [caption, setCaption] = useState('')
-  const [postToTiktok, setPostToTiktok] = useState(true)
-  const [postToInstagram, setPostToInstagram] = useState(true)
-  const [credits, setCredits] = useState(100) // Example initial credits
+  const [tiktokConnected, setTiktokConnected] = useState(false);
+  const [instagramConnected, setInstagramConnected] = useState(false);
+  const [file, setFile] = useState(null);
+  const [caption, setCaption] = useState("");
+  const [postToTiktok, setPostToTiktok] = useState(true);
+  const [postToInstagram, setPostToInstagram] = useState(true);
+  const [credits, _] = useState(100); // Example initial credits
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0])
-  }
+  const handleFileChange = (event: any) => {
+    setFile(event.target.files[0]);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
     // Here you would implement the actual upload logic
-    console.log('Uploading:', { file, caption, postToTiktok, postToInstagram })
-  }
+    console.log("Uploading:", { file, caption, postToTiktok, postToInstagram });
+  };
 
   const connectTiktok = () => {
     // Implement TikTok connection logic here
-    setTiktokConnected(true)
-  }
+    setTiktokConnected(true);
+  };
 
   const connectInstagram = () => {
     // Implement Instagram connection logic here
-    setInstagramConnected(true)
-  }
+    setInstagramConnected(true);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-400 to-pink-500 flex flex-col">
@@ -53,7 +68,9 @@ export function SocialMediaConnector() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <Home className="h-6 w-6 text-purple-600 mr-2" />
-            <h1 className="text-xl font-bold text-gray-900">Social Media Connector</h1>
+            <h1 className="text-xl font-bold text-gray-900">
+              Social Media Connector
+            </h1>
           </div>
           <nav className="flex items-center space-x-4">
             <Button variant="ghost" size="sm">
@@ -76,12 +93,18 @@ export function SocialMediaConnector() {
                 <DropdownMenuLabel>Notifications</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>New follower on TikTok</DropdownMenuItem>
-                <DropdownMenuItem>Post reached 1k likes on Instagram</DropdownMenuItem>
+                <DropdownMenuItem>
+                  Post reached 1k likes on Instagram
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="flex items-center space-x-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="flex items-center space-x-2"
+                >
                   <Avatar className="h-8 w-8">
                     <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
                     <AvatarFallback>U</AvatarFallback>
@@ -103,7 +126,9 @@ export function SocialMediaConnector() {
       <div className="flex-1 flex items-center justify-center p-4">
         <Card className="w-full max-w-2xl">
           <CardHeader>
-            <CardTitle className="text-3xl font-bold text-center">Create New Post</CardTitle>
+            <CardTitle className="text-3xl font-bold text-center">
+              Create New Post
+            </CardTitle>
             <CardDescription className="text-center">
               Connect your TikTok and Instagram accounts to post simultaneously
             </CardDescription>
@@ -115,26 +140,41 @@ export function SocialMediaConnector() {
                   <Button
                     type="button"
                     onClick={connectTiktok}
-                    className={`flex items-center ${tiktokConnected ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+                    className={`flex items-center ${
+                      tiktokConnected
+                        ? "bg-green-500 hover:bg-green-600"
+                        : "bg-gray-200 hover:bg-gray-300"
+                    }`}
                     disabled={tiktokConnected}
                   >
                     <TikTok className="mr-2 h-4 w-4" />
-                    {tiktokConnected ? 'TikTok Connected' : 'Connect TikTok'}
+                    {tiktokConnected ? "TikTok Connected" : "Connect TikTok"}
                   </Button>
                   <Button
                     type="button"
                     onClick={connectInstagram}
-                    className={`flex items-center ${instagramConnected ? 'bg-green-500 hover:bg-green-600' : 'bg-gray-200 hover:bg-gray-300'}`}
+                    className={`flex items-center ${
+                      instagramConnected
+                        ? "bg-green-500 hover:bg-green-600"
+                        : "bg-gray-200 hover:bg-gray-300"
+                    }`}
                     disabled={instagramConnected}
                   >
                     <Instagram className="mr-2 h-4 w-4" />
-                    {instagramConnected ? 'Instagram Connected' : 'Connect Instagram'}
+                    {instagramConnected
+                      ? "Instagram Connected"
+                      : "Connect Instagram"}
                   </Button>
                 </div>
                 <div>
                   <Label htmlFor="file">Upload Content</Label>
                   <div className="mt-1 flex items-center space-x-4">
-                    <Input id="file" type="file" onChange={handleFileChange} className="flex-grow" />
+                    <Input
+                      id="file"
+                      type="file"
+                      onChange={handleFileChange}
+                      className="flex-grow"
+                    />
                     {file && <Upload className="h-6 w-6 text-green-500" />}
                   </div>
                 </div>
@@ -183,13 +223,17 @@ export function SocialMediaConnector() {
       </div>
       <footer className="bg-white shadow-md mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <p className="text-sm text-gray-500">© 2023 Social Media Connector. All rights reserved.</p>
+          <p className="text-sm text-gray-500">
+            © 2023 Social Media Connector. All rights reserved.
+          </p>
           <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium text-gray-700">Available Credits:</span>
+            <span className="text-sm font-medium text-gray-700">
+              Available Credits:
+            </span>
             <span className="text-sm font-bold text-purple-600">{credits}</span>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
