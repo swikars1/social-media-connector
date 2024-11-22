@@ -4,7 +4,7 @@ import { signIn } from "@/auth";
 
 export async function signInToTiktok() {
   await signIn("tiktok", {
-    scopes: [
+    scope: [
       "user.info.basic",
       "user.info.profile",
       "video.publish",
