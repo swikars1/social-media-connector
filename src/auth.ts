@@ -8,7 +8,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientSecret: process.env.AUTH_TIKTOK_SECRET,
       authorization: {
         params: {
-          scope: `user.info.basic user.info.profile video.publish video.upload`,
+          scope: [
+            "user.info.basic",
+            "user.info.profile",
+            "video.publish",
+            "video.upload",
+          ],
         },
       },
     }),
