@@ -71,7 +71,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientSecret: process.env.AUTH_INSTAGRAM_CLIENT_SECRET,
       authorization: {
         params: {
-          scope: ["basic", "instagram_basic", "instagram_content_publish"],
+          scope: ["basic"],
         },
       },
     }),
