@@ -1,5 +1,4 @@
 import NextAuth, { customFetch } from "next-auth";
-import TikTok from "next-auth/providers/tiktok";
 import { prisma } from "./lib/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { OAuth2Config, Provider } from "next-auth/providers";
@@ -25,7 +24,7 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
       const json = await response.json();
       return Response.json({ ...json });
     }
-    // @ts-ignore
+    // @ts-expect-error
     return fetch(...args);
   },
   id: "tiktok",
