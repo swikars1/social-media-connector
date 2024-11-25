@@ -21,6 +21,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       token: {
         request: async (context) => {
+          console.log({ context });
           // Custom token request implementation
           const tokens = await fetch(
             "https://open.tiktokapis.com/v2/oauth/token",
