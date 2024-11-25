@@ -24,7 +24,7 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
       const json = await response.json();
       return Response.json({ ...json });
     }
-    // @ts-expect-error
+    // @ts-expect-error: A spread argument must either have a tuple type or be passed to a rest parameter.
     return fetch(...args);
   },
   id: "tiktok",
