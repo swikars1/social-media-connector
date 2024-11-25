@@ -2,7 +2,9 @@ import NextAuth, { customFetch } from "next-auth";
 import { prisma } from "./lib/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { OAuth2Config, Provider } from "next-auth/providers";
+import Instagram from "next-auth/providers/instagram";
 
+// needs custom update
 const CustomTiktok: OAuth2Config<any> & Provider = {
   async [customFetch](...args) {
     const url = new URL(args[0] instanceof Request ? args[0].url : args[0]);
@@ -62,5 +64,11 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers: [CustomTiktok],
+  providers: [
+    CustomTiktok,
+    Instagram({
+      clientId: process.env.AUTH_INSTAGRAM_CLIENT_ID,
+      clientSecret: process.env.AUTH_INSTAGRAM_CLIENT_SECRET,
+    }),
+  ],
 });

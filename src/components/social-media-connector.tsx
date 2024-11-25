@@ -32,7 +32,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { signInToTiktok } from "@/lib/signInLib";
+import { signInToInstagram, signInToTiktok } from "@/lib/signInLib";
 
 export function SocialMediaConnector() {
   const [tiktokConnected, setTiktokConnected] = useState(false);
@@ -59,8 +59,9 @@ export function SocialMediaConnector() {
     setTiktokConnected(true);
   };
 
-  const connectInstagram = () => {
+  const connectInstagram = async () => {
     // Implement Instagram connection logic here
+    await signInToInstagram();
     setInstagramConnected(true);
   };
 
