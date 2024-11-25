@@ -30,7 +30,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               },
               method: "POST",
               body: new URLSearchParams({
-                client_id: process.env.AUTH_TIKTOK_CLIENT_ID!,
+                client_key: process.env.AUTH_TIKTOK_CLIENT_ID!,
                 client_secret: process.env.AUTH_TIKTOK_SECRET!,
                 code: context.params.code,
                 grant_type: "authorization_code",
