@@ -25,6 +25,7 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
       const json = await response.json();
       return Response.json({ ...json });
     }
+    // @ts-ignore
     return fetch(...args);
   },
   id: "tiktok",
