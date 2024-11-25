@@ -19,6 +19,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           ],
         },
       },
+      token: {
+        request: async (context) => {
+          // Custom token request implementation
+          const tokens = await fetch(
+            "https://open.tiktokapis.com/v2/oauth/token",
+            {
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+              },
+              method: "POST",
+              body: new URLSearchParams({
+                client_id: process.env.AUTH_TIKTOK_CLIENT_ID!,
+                client_secret: process.env.AUTH_TIKTOK_SECRET!,
+                code: context.params.code,
+                grant_type: "authorization_code",
+                redirect_uri: context.provider.callbackUrl,
+              }),
+            }
+          ).then((res) => res.json());
+
+          return {
+            tokens,
+          };
+        },
+      },
     }),
   ],
 });
