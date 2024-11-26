@@ -2,7 +2,6 @@ import NextAuth, { customFetch } from "next-auth";
 import { prisma } from "./lib/prisma";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { OAuth2Config, Provider } from "next-auth/providers";
-import Instagram from "next-auth/providers/instagram";
 
 // needs custom update
 const CustomTiktok: OAuth2Config<any> & Provider = {
