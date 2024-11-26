@@ -62,21 +62,37 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
   },
 };
 
+const CustomInstagram: OAuth2Config<any> & Provider = {
+  id: "instagram",
+  name: "Instagram",
+  type: "oauth",
+  client: {
+    token_endpoint_auth_method: "client_secret_post",
+  },
+
+  authorization: {
+    url: "https://api.instagram.com/oauth/authorize",
+    params: {
+      client_key: process.env.AUTH_INSTAGRAM_CLIENT_ID,
+      scope: ["instagram_business_basic"],
+    },
+  },
+
+  token: "https://api.instagram.com/oauth/access_token",
+  userinfo:
+    "https://graph.instagram.com/me?fields=id,username,account_type,name",
+
+  profile(profile) {
+    return {
+      id: profile.id,
+      name: profile.username,
+      email: null,
+      image: null,
+    };
+  },
+};
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers: [
-    CustomTiktok,
-    Instagram({
-      clientId: process.env.AUTH_INSTAGRAM_CLIENT_ID,
-      clientSecret: process.env.AUTH_INSTAGRAM_CLIENT_SECRET,
-      // authorization: {
-      //   params: {
-      //     scope: [
-      //       "instagram_business_basic",
-      //       "instagram_business_content_publish",
-      //     ],
-      //   },
-      // },
-    }),
-  ],
+  providers: [CustomTiktok, CustomInstagram],
 });
