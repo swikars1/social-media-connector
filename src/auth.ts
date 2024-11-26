@@ -62,6 +62,30 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
 };
 
 const CustomInstagram: OAuth2Config<any> & Provider = {
+  async [customFetch](...args) {
+    const url = new URL(args[0] instanceof Request ? args[0].url : args[0]);
+    if (url.pathname.endsWith("/token/")) {
+      const [url, request] = args;
+
+      const customHeaders = {
+        ...request?.headers,
+        "content-type": "application/x-www-form-urlencoded",
+      };
+
+      const customBody = new URLSearchParams(request?.body as string);
+      customBody.append("client_key", process.env.AUTH_INSTAGRAM_CLIENT_ID!);
+      const response = await fetch(url, {
+        ...request,
+        headers: customHeaders,
+        body: customBody.toString(),
+      });
+      const json = await response.json();
+      return Response.json({ ...json });
+    }
+    // @ts-expect-error: A spread argument must either have a tuple type or be passed to a rest parameter.
+    return fetch(...args);
+  },
+
   id: "instagram",
   name: "Instagram",
   type: "oauth",
