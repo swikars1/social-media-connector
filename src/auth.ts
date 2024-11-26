@@ -69,14 +69,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Instagram({
       clientId: process.env.AUTH_INSTAGRAM_CLIENT_ID,
       clientSecret: process.env.AUTH_INSTAGRAM_CLIENT_SECRET,
-      authorization: {
-        params: {
-          scope: [
-            "instagram_business_basic",
-            "instagram_business_content_publish",
-          ],
-        },
-      },
+      // authorization: {
+      //   params: {
+      //     scope: [
+      //       "instagram_business_basic",
+      //       "instagram_business_content_publish",
+      //     ],
+      //   },
+      // },
     }),
   ],
 });
