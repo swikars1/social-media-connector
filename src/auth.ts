@@ -38,12 +38,7 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
     url: "https://www.tiktok.com/v2/auth/authorize",
     params: {
       client_key: process.env.AUTH_TIKTOK_CLIENT_ID,
-      scope: [
-        "user.info.basic",
-        "user.info.profile",
-        "video.publish",
-        "video.upload",
-      ],
+      scope: ["user.info.basic", "video.publish", "video.upload"],
     },
   },
 
