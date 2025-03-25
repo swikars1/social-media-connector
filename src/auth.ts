@@ -48,10 +48,11 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
 
   profile(profile) {
     return {
-      id: profile.data.user.open_id,
-      name: profile.data.user.display_name,
-      image: profile.data.user.avatar_url,
-      email: profile.data.user.email || profile.data.user.username || null,
+      id: profile?.data?.user?.open_id,
+      name: profile?.data?.user?.display_name,
+      image: profile?.data?.user?.avatar_url,
+      email:
+        profile?.data?.user?.email || profile?.data?.user?.username || null,
     };
   },
 };
