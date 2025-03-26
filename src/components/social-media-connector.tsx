@@ -2,69 +2,26 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Instagram,
-  TwitterIcon as TikTok,
-  Upload,
-  Home,
-  Settings,
-  HelpCircle,
-  Bell,
-} from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { signInToInstagram, signInToTiktok } from "@/lib/signInLib";
+import { TwitterIcon as TikTok, Home } from "lucide-react";
+import { signInToTiktok } from "@/lib/signInLib";
 import { getUserAccessToken } from "@/lib/getUserAccessToken";
 import { initVideoPublish } from "@/lib/creatorInfo";
 
 export function SocialMediaConnector() {
   const [tiktokConnected, setTiktokConnected] = useState(false);
-  const [instagramConnected, setInstagramConnected] = useState(false);
-  const [file, setFile] = useState(null);
-  const [caption, setCaption] = useState("");
-  const [postToTiktok, setPostToTiktok] = useState(true);
-  const [postToInstagram, setPostToInstagram] = useState(true);
   const [credits] = useState(100); // Example initial credits
-
-  const handleFileChange = (event) => {
-    setFile(event?.target?.files?.[0]);
-  };
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    // Here you would implement the actual upload logic
-    console.log("Uploading:", { file, caption, postToTiktok, postToInstagram });
-  };
 
   const connectTiktok = async () => {
     // Implement TikTok connection logic here
     await signInToTiktok();
     setTiktokConnected(true);
-  };
-
-  const connectInstagram = async () => {
-    // Implement Instagram connection logic here
-    await signInToInstagram();
-    setInstagramConnected(true);
   };
 
   return (

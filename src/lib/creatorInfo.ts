@@ -60,7 +60,7 @@ type MusicInfo = {
   audio_id: string;
 };
 
-type CreatorInfo = {
+export type CreatorInfo = {
   data: {
     creator_avatar_url: string;
     creator_username: string;
