@@ -62,61 +62,7 @@ const CustomTiktok: OAuth2Config<any> & Provider = {
   },
 };
 
-const CustomInstagram: OAuth2Config<any> & Provider = {
-  async [customFetch](...args) {
-    const url = new URL(args[0] instanceof Request ? args[0].url : args[0]);
-    if (url.pathname.endsWith("/token/")) {
-      const [url, request] = args;
-
-      const customHeaders = {
-        ...request?.headers,
-        "content-type": "application/x-www-form-urlencoded",
-      };
-
-      const customBody = new URLSearchParams(request?.body as string);
-      customBody.append("client_key", process.env.AUTH_INSTAGRAM_CLIENT_ID!);
-      const response = await fetch(url, {
-        ...request,
-        headers: customHeaders,
-        body: customBody.toString(),
-      });
-      const json = await response.json();
-      return Response.json({ ...json });
-    }
-    // @ts-expect-error: A spread argument must either have a tuple type or be passed to a rest parameter.
-    return fetch(...args);
-  },
-
-  id: "instagram",
-  name: "Instagram",
-  type: "oauth",
-  client: {
-    token_endpoint_auth_method: "client_secret_post",
-  },
-
-  authorization: {
-    url: "https://api.instagram.com/oauth/authorize",
-    params: {
-      client_key: process.env.AUTH_INSTAGRAM_CLIENT_ID,
-      scope: ["instagram_business_basic"],
-    },
-  },
-
-  token: "https://api.instagram.com/oauth/access_token",
-  userinfo:
-    "https://graph.instagram.com/me?fields=id,username,account_type,name",
-
-  profile(profile) {
-    return {
-      id: profile.id,
-      name: profile.username,
-      email: null,
-      image: null,
-    };
-  },
-};
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers: [CustomTiktok, CustomInstagram],
+  providers: [CustomTiktok],
 });
