@@ -94,22 +94,14 @@ export async function fetchCreatorInfo(token) {
   return await response.json();
 }
 
-export async function initVideoPublish(sourceInfo, postInfo) {
-  const token = await getUserAccessToken();
-  const response = await fetch(
-    "https://open.tiktokapis.com/v2/post/publish/video/init/",
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({
-        post_info: postInfo,
-        source_info: sourceInfo,
-      }),
-    }
-  );
+export const initVideoPublish = async (sourceInfo, postInfo) => {
+  const response = await fetch("/api/tiktok/init-video", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ sourceInfo, postInfo }),
+  });
 
   return await response.json();
-}
+};

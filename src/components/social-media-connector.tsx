@@ -76,7 +76,8 @@ export function SocialMediaConnector() {
                   disable_stitch: false,
                   video_cover_timestamp_ms: 2000,
                 };
-                await initVideoPublish(sourceInfo, postInfo);
+                const a = await initVideoPublish(sourceInfo, postInfo);
+                console.log({ a });
               }}
             >
               Publish
