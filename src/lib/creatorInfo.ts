@@ -1,5 +1,3 @@
-import { getUserAccessToken } from "./getUserAccessToken";
-
 export type ReelInfo = {
   inputUrl: string;
   id: string;
